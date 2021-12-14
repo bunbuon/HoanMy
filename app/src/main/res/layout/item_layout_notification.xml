@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_5sdp"
+    app:cardBackgroundColor="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_hoanmy" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/logo"
+            android:orientation="vertical">
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/txt_title_noti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calibrib"
+                android:text="Thông báo dọn vệ sinh"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sdp" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/txt_des_noti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calibri"
+                android:text="Thông báo dọn vệ sinh tầng 1, nhà ăn, bếp, khu vui chơi, hành lang."
+                android:textColor="@color/color_key"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/txt_date_noti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calibri"
+                android:text="1 giờ trước"
+                android:textColor="@color/color_key"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
