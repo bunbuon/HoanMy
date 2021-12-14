@@ -2,12 +2,56 @@
     <string name="app_name">HoanMy</string>
     <string name="alert_error_network">Network Error</string>
     <string name="login">Đăng nhập</string>
+    <string name="add_job">Thêm công việc</string>
+    <string name="add_time">Thêm thời gian</string>
     <string name="mota_login">Xin mời quý khách hàng đăng nhập để trải nghiệm dịch vụ của Hoàn Mỹ</string>
     <string name="hint_account_pass">Tài khoản</string>
     <string name="hint_password">Mật khẩu</string>
+    <string name="hint_search">Nhập tên nhân viên</string>
     <string name="loss_password">Quên mật khẩu?</string>
     <string name="create_new_account">Đăng ký tài khoản mới.</string>
     <string name="description_main">Cty TNHH Quản lý và Dịch vụ tài sản Thành Công</string>
     <string name="manage_job">Quản lý công việc</string>
+    <string name="list_project">Danh sách dự án</string>
+    <string name="list_employee">Danh sách nhân viên</string>
+    <string name="manage_job_extra">Phát Sinh</string>
+    <string name="input_job_extra">Công việc phát Sinh</string>
     <string name="appIdZalo">1219765622989422682</string>
+    <string name="status_error_login">*Username or Password is incorrect! Please try again.</string>
+    <string name="notification">Thông Báo</string>
+
+    <string-array name="project_arr">
+        <item>Tên Dự Án</item>
+        <item>Dự Án A</item>
+        <item>Dự Án B</item>
+        <item>Dự Án C</item>
+        <item>Dự Án Tòa Nhà CT12</item>
+        <item>Dự Án Roman</item>
+    </string-array>
+
+    <string-array name="employee_arr">
+        <item>Tên Nhân Viên</item>
+        <item>Nguyễn Văn A</item>
+        <item>Nguyễn Văn B</item>
+        <item>Nguyễn Văn C</item>
+        <item>Nguyễn Văn Tòa Nhà CT12</item>
+        <item>Nguyễn Văn Roman</item>
+    </string-array>
+
+    <string-array name="job_arr">
+        <item>Tên Công Việc</item>
+        <item>Công việc A</item>
+        <item>Công việc B</item>
+        <item>Công việc C</item>
+        <item>Công việc Tòa Nhà CT12</item>
+        <item>Công việc Roman</item>
+    </string-array>
+
+
+    <string-array name="frequency_arr">
+        <item>Tần Suất</item>
+        <item>1 Tuần 1 Lần</item>
+        <item>1 Tháng 1 Lần</item>
+        <item>1 Quý 1 Lần</item>
+    </string-array>
 </resources>

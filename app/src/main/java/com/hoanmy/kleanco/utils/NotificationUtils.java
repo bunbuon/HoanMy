@@ -67,7 +67,7 @@ public class NotificationUtils {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContent(remoteViews);
         Bitmap bitmap = getBitmapFromURL(imageUrl);
-        remoteViews.setImageViewBitmap(R.id.imgNotification, bitmap);
+//        remoteViews.setImageViewBitmap(R.id.hoan, bitmap);
         remoteViews.setTextViewText(R.id.tvTitle, title);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addNextIntent(intent);
@@ -94,7 +94,7 @@ public class NotificationUtils {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContent(remoteViews);
         Bitmap bitmap = getBitmapFromURL(imageUrl);
-        remoteViews.setImageViewBitmap(R.id.imgNotification, bitmap);
+//        remoteViews.setImageViewBitmap(R.id.hoan, bitmap);
         remoteViews.setTextViewText(R.id.tvTitle, title);
         NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(notificationId, builder.build());

@@ -28,27 +28,10 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         addFragment(new LoginFragment());
-        try {
-            getApplicationHashKey(getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
 
     }
 
-
-    public static String getApplicationHashKey(Context ctx) throws Exception {
-        PackageInfo info = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), PackageManager.GET_SIGNATURES);
-        for (Signature signature : info.signatures) {
-            MessageDigest md = MessageDigest.getInstance("SHA");
-            md.update(signature.toByteArray());
-            String sig = Base64.encodeToString(md.digest(), Base64.DEFAULT).trim();
-            if (sig.trim().length() > 0) {
-                return sig;
-            }
-        }
-        return "";
-    }
 
     private void addFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    app:cardBackgroundColor="@color/color_key"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/_20sdp">
+        android:padding="@dimen/_10sdp"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/view_top"
@@ -19,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/calibrib"
+                android:textColor="@color/white"
                 android:text="Nguyen Van A"
                 android:textSize="@dimen/_14sdp" />
 
@@ -29,7 +35,7 @@
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/calibrib"
                 android:text="01:30"
-                android:textColor="@color/color_key"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp" />
 
         </RelativeLayout>
@@ -40,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/calibri"
+            android:textColor="@color/white"
             android:text="7:00 - 8:15"
             android:textSize="@dimen/_14sdp" />
 
@@ -47,6 +54,7 @@
             android:id="@+id/txt_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/calibri"
             android:text="Trực phát sinh ngoại cảnh, sảnh hay thang máy tầng hầm, WC tầng hầm"
