@@ -89,6 +89,8 @@ public class RequestApi {
 
         @GET("/project/detail")
         Observable<JsonElement> getDetailProject(@Query("token") String token);
+        @GET("/project/task")
+        Observable<JsonElement> getProjectForId(@Query("token") String token);
 
     }
 }

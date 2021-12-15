@@ -7,16 +7,22 @@ import android.widget.RelativeLayout;
 import androidx.core.content.ContextCompat;
 
 import com.hoanmy.kleanco.services.NotificationForegroundService;
+import com.hoanmy.kleanco.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class EmployeeAtivity extends BaseActivity {
-    @OnClick(R.id.layout_notification)
+    @OnClick(R.id.img_notification)
     void onClickNotification() {
         Intent intent = new Intent(this, NotificationManageActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.img_logout)
+    void onClickLogout() {
+        Utils.loginActivity(this);
     }
 
     @Override

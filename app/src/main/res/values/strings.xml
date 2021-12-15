@@ -16,9 +16,11 @@
     <string name="list_employee">Danh sách nhân viên</string>
     <string name="manage_job_extra">Phát Sinh</string>
     <string name="input_job_extra">Công việc phát Sinh</string>
+    <string name="input_feedback">Đánh giá công việc</string>
     <string name="appIdZalo">1219765622989422682</string>
     <string name="status_error_login">*Username or Password is incorrect! Please try again.</string>
     <string name="notification">Thông Báo</string>
+    <string name="status_login">STATUS_LOGIN</string>
 
     <string-array name="project_arr">
         <item>Tên Dự Án</item>
@@ -47,11 +49,15 @@
         <item>Công việc Roman</item>
     </string-array>
 
-
     <string-array name="frequency_arr">
         <item>Tần Suất</item>
-        <item>1 Tuần 1 Lần</item>
-        <item>1 Tháng 1 Lần</item>
-        <item>1 Quý 1 Lần</item>
+        <item>Hàng ngày</item>
+        <item>Thứ 2 hàng tuần</item>
+        <item>Thứ 3 hàng tuần</item>
+        <item>Thứ 4 hàng tuần</item>
+        <item>Thứ 5 hàng tuần</item>
+        <item>Thứ 6 hàng tuần</item>
+        <item>Thứ 7 hàng tuần</item>
+        <item>Chủ nhật hàng tuần</item>
     </string-array>
 </resources>

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hoanmy.kleanco.EmployeeListActivity;
 import com.hoanmy.kleanco.R;
-import com.hoanmy.kleanco.models.Project;
+import com.hoanmy.kleanco.models.ProjectDetail;
 
 import java.util.List;
 
@@ -20,10 +20,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Project> itemList;
+    private List<ProjectDetail> itemList;
     private static Activity mActivity;
 
-    public ProjectAdapter(Activity activity, List<Project> items) {
+    public ProjectAdapter(Activity activity, List<ProjectDetail> items) {
         mActivity = activity;
         this.itemList = items;
     }
@@ -55,7 +55,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ButterKnife.bind(this, itemView);
         }
 
-        private void showViews(final RecyclerView.Adapter adapter, final List<Project> notifications, final int position) {
+        private void showViews(final RecyclerView.Adapter adapter, final List<ProjectDetail> notifications, final int position) {
             rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

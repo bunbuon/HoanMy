@@ -1,6 +1,6 @@
 package com.hoanmy.kleanco.models;
 
-public class Project {
+public class ProjectDetail {
     String _id;
     String user_id;
     String name;
@@ -13,6 +13,7 @@ public class Project {
     int status;
     long created_at;
     long updated_at;
+    int users_by_project;
 
     public String get_id() {
         return _id;

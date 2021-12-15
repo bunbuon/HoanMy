@@ -7,10 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hoanmy.kleanco.adapters.NotificationAdapter;
 import com.hoanmy.kleanco.adapters.ProjectAdapter;
-import com.hoanmy.kleanco.models.Notification;
-import com.hoanmy.kleanco.models.Project;
+import com.hoanmy.kleanco.models.ProjectDetail;
 
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class ProjectActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     private ProjectAdapter projectAdapter;
-    private List<Project> itemList;
+    private List<ProjectDetail> itemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

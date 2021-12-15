@@ -20,7 +20,9 @@ import com.google.gson.reflect.TypeToken;
 import com.hoanmy.kleanco.api.RequestApi;
 import com.hoanmy.kleanco.commons.Constants;
 import com.hoanmy.kleanco.models.Login;
+import com.hoanmy.kleanco.models.ProjectsForID;
 import com.hoanmy.kleanco.services.NotificationForegroundService;
+import com.hoanmy.kleanco.utils.Utils;
 import com.zing.zalo.zalosdk.oauth.ZaloOpenAPICallback;
 
 import org.json.JSONObject;
@@ -40,6 +42,11 @@ public class CustomerActivity extends AppCompatActivity implements ZaloOpenAPICa
 
 
     private Login loginData;
+
+    @OnClick(R.id.img_logout)
+    void onClickLogout() {
+        Utils.loginActivity(this);
+    }
 
     @OnClick(R.id.image_hotline)
     void OnClickHotLine() {
@@ -61,14 +68,22 @@ public class CustomerActivity extends AppCompatActivity implements ZaloOpenAPICa
 
     @OnClick(R.id.image_zalo)
     void onClickZalo() {
-//        startService();
-        Intent intent = new Intent(this, NotificationManageActivity.class);
-        startActivity(intent);
-//        OpenAPIService.getInstance().sendMsgToFriend(this, "sDGw492sLrFSspyKdBXSLTVHC1YSf0i8eBeMBh6g8m6DnmWxnViW3CJ8Fq7QqH5PujifVD_cNcoLopDTkSa8I_RgFMsxwmfnX_K3Oehz8tgNt0fCX_8eG96GF7gSeGn5lv8lTRoBB6Q4gaLLoxbcGjspH5AKWq4UhEaY0FZa0H78nZ4HnAGADFEM6Ihk_Hefu_KEPTJbFI3hoZKGpTWX1lx691pCq0vGzk0T2CRhS2JnrKWOpE5eLTZsSLgMsX91tBOfSv2v7csVj0bwaBzgMBQLQL-DjbK7RK5vMrfrag5HLm", "huoli1997", "aloaloalo", "", this::onResult);
-
+        Intent intent = getPackageManager().getLaunchIntentForPackage("com.zing.zalo");
+        if (intent != null) {
+            // We found the activity now start the activity
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else {
+            // Bring user to the market or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setData(Uri.parse("market://details?id=" + "com.package.name"));
+            startActivity(intent);
+        }
     }
+
     @OnClick(R.id.btn_manage_job)
-    void onClickManage(){
+    void onClickManage() {
 
         Intent intent = new Intent(this, ManagementActivity.class);
         startActivity(intent);
@@ -84,27 +99,9 @@ public class CustomerActivity extends AppCompatActivity implements ZaloOpenAPICa
             txtNameManager.setText("Xin chào " + loginData.getName());
 
         }
+
     }
 
-    private void getDetailProject(String token) {
-        RequestApi.getInstance().getDetailProject(token).retry(Constants.NUMBER_RETRY_IF_CALL_API_FAIL)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<JsonElement>() {
-                    @Override
-                    public void call(JsonElement jsonElement) {
-                        Login login = new Gson().fromJson(jsonElement.getAsJsonObject().get("data"), new TypeToken<Login>() {
-                        }.getType());
-
-
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-                });
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {

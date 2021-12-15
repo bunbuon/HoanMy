@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.hoanmy.kleanco.R;
 import com.hoanmy.kleanco.models.Employee;
-import com.hoanmy.kleanco.models.Project;
 
 import java.util.List;
 

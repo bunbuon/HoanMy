@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hoanmy.kleanco.CustomerActivity;
 import com.hoanmy.kleanco.EmployeeAtivity;
 import com.hoanmy.kleanco.EmployeeListActivity;
+import com.hoanmy.kleanco.LoginActivity;
 import com.hoanmy.kleanco.ManagerActivity;
 import com.hoanmy.kleanco.R;
 import com.hoanmy.kleanco.api.RequestApi;
@@ -22,6 +23,7 @@ import com.hoanmy.kleanco.commons.Action;
 import com.hoanmy.kleanco.commons.Constants;
 import com.hoanmy.kleanco.commons.IOnBackPressed;
 import com.hoanmy.kleanco.models.Login;
+import com.hoanmy.kleanco.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
@@ -62,16 +64,8 @@ public class LoginFragment extends BaseFragment implements IOnBackPressed {
     void onClickLogin() {
         String userName = edtAccount.getText().toString();
         String pass = edtPassword.getText().toString();
-        if (userName.equals("admin")) {
-            nextHome();
-        } else if (userName.equals("customer")) {
-            nextCustomer();
-        } else if (userName.equals("employee")) {
-            nextEmployee();
-        } else {
-            txtStatus.setVisibility(View.VISIBLE);
-        }
-//        postDataUser(userName, pass);
+
+        postDataUser(userName, pass);
     }
 
     private void postDataUser(String userName, String passWord) {
@@ -97,7 +91,7 @@ public class LoginFragment extends BaseFragment implements IOnBackPressed {
                             txtStatus.setVisibility(View.VISIBLE);
                         } else {
                             txtStatus.setVisibility(View.GONE);
-                            nextHome(login);
+                            setRole(login);
                         }
 
 
@@ -109,6 +103,23 @@ public class LoginFragment extends BaseFragment implements IOnBackPressed {
                     }
                 });
 
+    }
+
+    private void setRole(Login login) {
+        Paper.book().write("login", login);
+        String role = login.getRole();
+        if (role.equals("admin")) {
+            Paper.book().write(getString(R.string.status_login), "admin");
+            Utils.nextHome(getActivity());
+        } else if (role.equals("customer")) {
+            Paper.book().write(getString(R.string.status_login), "customer");
+            Utils.nextCustomer(getActivity());
+        } else if (role.equals("employee")) {
+            Paper.book().write(getString(R.string.status_login), "employee");
+            Utils.nextEmployee(getActivity());
+        } else {
+            txtStatus.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -127,28 +138,5 @@ public class LoginFragment extends BaseFragment implements IOnBackPressed {
         return false;
     }
 
-    private void nextHome(Login login) {
-        Paper.book().write("login", login);
-        Intent intent = new Intent(getContext(), ManagerActivity.class);
-        getContext().startActivity(intent);
-        getActivity().finish();
-    }
 
-    private void nextHome() {
-        Intent intent = new Intent(getContext(), ManagerActivity.class);
-        getContext().startActivity(intent);
-        getActivity().finish();
-    }
-
-    private void nextCustomer() {
-        Intent intent = new Intent(getContext(), CustomerActivity.class);
-        getContext().startActivity(intent);
-        getActivity().finish();
-    }
-
-    private void nextEmployee() {
-        Intent intent = new Intent(getContext(), EmployeeAtivity.class);
-        getContext().startActivity(intent);
-        getActivity().finish();
-    }
 }

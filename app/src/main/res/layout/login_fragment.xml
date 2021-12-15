@@ -59,44 +59,47 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:background="@drawable/border_radius_edittext"
             android:fontFamily="@font/calibri"
-            android:maxLines="1"
             android:hint="@string/hint_account_pass"
+            android:lines="1"
+            android:maxLines="1"
             android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
+            android:textColor="@color/color_key"
             android:textColorHint="@color/color_key" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:maxLines="1"
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/border_radius_edittext"
             android:fontFamily="@font/calibri"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
+            android:lines="1"
+            android:maxLines="1"
             android:padding="@dimen/_10sdp"
-            android:textColor="@color/black"
+            android:textColor="@color/color_key"
             android:textColorHint="@color/color_key" />
+
         <com.ctrlplusz.anytextview.AnyTextView
             android:id="@+id/status_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:visibility="gone"
             android:fontFamily="@font/calibri"
+            android:gravity="center_horizontal"
             android:text="@string/status_error_login"
             android:textColor="@color/red"
-            android:textSize="@dimen/_13sdp" />
+            android:textSize="@dimen/_13sdp"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_30sdp"
             android:background="@drawable/border_radius_button"
-            android:fontFamily="@font/calibri"
+            android:fontFamily="@font/calibrib"
             android:text="@string/login"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp" />

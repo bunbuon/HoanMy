@@ -3,6 +3,8 @@ package com.hoanmy.kleanco;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.hoanmy.kleanco.utils.Utils;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -19,10 +21,15 @@ public class ManagerActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    @OnClick(R.id.layout_notification)
+    @OnClick(R.id.img_notification)
     void onClickNotification() {
         Intent intent = new Intent(this, NotificationManageActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.img_logout)
+    void onClickLogout() {
+        Utils.loginActivity(this);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.hoanmy.kleanco;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -16,19 +17,30 @@ import com.hoanmy.kleanco.commons.IOnBackPressed;
 import com.hoanmy.kleanco.fragments.LoginFragment;
 import com.hoanmy.kleanco.fragments.LossPassFragment;
 import com.hoanmy.kleanco.fragments.RegisterFragment;
+import com.hoanmy.kleanco.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.security.MessageDigest;
 
+import io.paperdb.Paper;
+
 public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        addFragment(new LoginFragment());
-
+        if (Paper.book().read("STATUS_LOGIN") != null) {
+            if (Paper.book().read("STATUS_LOGIN").equals("admin".trim())) {
+                Utils.nextHome(this);
+            } else if (Paper.book().read("STATUS_LOGIN").equals("customer".trim())) {
+                Utils.nextCustomer(this);
+            } else if (Paper.book().read("STATUS_LOGIN").equals("employee".trim())) {
+                Utils.nextEmployee(this);
+            }
+        } else
+            addFragment(new LoginFragment());
 
     }
 
