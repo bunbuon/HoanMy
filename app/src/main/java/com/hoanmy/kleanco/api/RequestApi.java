@@ -87,10 +87,15 @@ public class RequestApi {
         @POST("/login")
         Observable<JsonElement> postLogin(@Body JsonObject body);
 
+        @Headers("Content-Type: application/json")
+        @POST("/task/feedback")
+        Observable<JsonElement> postFeedback(@Query("token") String token, @Body JsonObject body);
+
         @GET("/project/detail")
         Observable<JsonElement> getDetailProject(@Query("token") String token);
+
         @GET("/project/task")
-        Observable<JsonElement> getProjectForId(@Query("token") String token);
+        Observable<JsonElement> getProjectForId(@Query("token") String token, @Query("status") String status);
 
     }
 }

@@ -11,12 +11,49 @@ public class TaskProject {
     int time_rest;
     String time_start;
     String time_end;
+    long time_start_timestamp;
+    long time_end_timestamp;
     String area;
     String floor;
     String note;
     int status;
     long created_at;
     long updated_at;
+    private User user;
+    private boolean isDone;
+    private long timeStartFeedback = 0;
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    public long getTimeStartFeedback() {
+        return timeStartFeedback;
+    }
+
+    public void setTimeStartFeedback(long timeStartFeedback) {
+        this.timeStartFeedback = timeStartFeedback;
+    }
+
+    public long getTime_start_timestamp() {
+        return time_start_timestamp;
+    }
+
+    public void setTime_start_timestamp(long time_start_timestamp) {
+        this.time_start_timestamp = time_start_timestamp;
+    }
+
+    public long getTime_end_timestamp() {
+        return time_end_timestamp;
+    }
+
+    public void setTime_end_timestamp(long time_end_timestamp) {
+        this.time_end_timestamp = time_end_timestamp;
+    }
 
     public String get_id() {
         return _id;
@@ -144,5 +181,13 @@ public class TaskProject {
 
     public void setUpdated_at(long updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

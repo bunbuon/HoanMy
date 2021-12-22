@@ -18,7 +18,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/calibrib"
             android:text="Dọn Vệ Sinh Tầng 1"
-            android:textColor="@color/white"
+            android:textColor="@color/color_key"
             android:textSize="@dimen/_14sdp" />
 
         <TextView

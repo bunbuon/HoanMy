@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/home_bg"
     android:orientation="vertical"
-    android:padding="@dimen/_20sdp"
     tools:context=".CustomerActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:scaleType="centerInside"
         android:src="@drawable/ic_baseline_logout_36" />
 
@@ -20,7 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/img_logout"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingRight="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_20sdp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/_250sdp"
@@ -54,6 +58,7 @@
         <com.ctrlplusz.anytextview.AnyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:fontFamily="@font/calibri"
             android:gravity="center"
             android:text="@string/description_main"
@@ -99,6 +104,7 @@
                 android:src="@drawable/icon_mail" />
 
             <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/txt_mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/calibri"
@@ -122,6 +128,7 @@
                 android:src="@drawable/icon_dt" />
 
             <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/txt_phone_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/calibri"
@@ -176,4 +183,16 @@
                 android:src="@drawable/hotlinebutton" />
         </LinearLayout>
     </LinearLayout>
+
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/txt_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/calibri"
+        android:text="version: 0.0.1"
+        android:textColor="@color/gray"
+        android:padding="@dimen/_5sdp"
+        android:textSize="@dimen/_10sdp" />
 </RelativeLayout>

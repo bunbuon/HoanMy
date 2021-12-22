@@ -39,6 +39,12 @@ public class CustomerActivity extends AppCompatActivity implements ZaloOpenAPICa
     private String name_manage;
     @BindView(R.id.txt_name_manage)
     AnyTextView txtNameManager;
+    @BindView(R.id.txt_time_job)
+    AnyTextView txtTimeJob;
+    @BindView(R.id.txt_mail)
+    AnyTextView txtMail;
+    @BindView(R.id.txt_phone_number)
+    AnyTextView txtPhoneNumber;
 
 
     private Login loginData;
@@ -97,7 +103,8 @@ public class CustomerActivity extends AppCompatActivity implements ZaloOpenAPICa
         loginData = Paper.book().read("login");
         if (loginData != null) {
             txtNameManager.setText("Xin chào " + loginData.getName());
-
+            txtMail.setText(loginData.getProjectDetail().getEmail());
+            txtTimeJob.setText(loginData.getProjectDetail().getHour_start() + " - " + loginData.getProjectDetail().getHour_end());
         }
 
     }

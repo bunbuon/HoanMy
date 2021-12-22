@@ -18,7 +18,7 @@
             android:layout_weight="3"
             android:fontFamily="@font/calibrib"
             android:text="Dọn Vệ Sinh Tầng 1"
-            android:textColor="@color/white"
+            android:textColor="@color/color_key"
             android:textSize="@dimen/_14sdp" />
 
         <TextView
@@ -63,6 +63,17 @@
             android:background="@drawable/border_radius_button"
             android:fontFamily="@font/calibrib"
             android:text="Tiếp Tục"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:background="@drawable/border_radius_button"
+            android:fontFamily="@font/calibrib"
+            android:text="Kết Thúc"
             android:textColor="@color/white" />
     </LinearLayout>
 </RelativeLayout>

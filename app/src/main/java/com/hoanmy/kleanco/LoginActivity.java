@@ -36,7 +36,7 @@ public class LoginActivity extends BaseActivity {
                 Utils.nextHome(this);
             } else if (Paper.book().read("STATUS_LOGIN").equals("customer".trim())) {
                 Utils.nextCustomer(this);
-            } else if (Paper.book().read("STATUS_LOGIN").equals("employee".trim())) {
+            } else if (Paper.book().read("STATUS_LOGIN").equals("staff".trim())) {
                 Utils.nextEmployee(this);
             }
         } else

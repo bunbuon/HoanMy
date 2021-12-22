@@ -10,4 +10,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
+
+
+    <color name="text_color_active">#FFFFFF</color>
+    <color name="text_color_normal">#25FF70</color>
+    <color name="background_key_color">#1A1D23</color>
+    <color name="background_color">#0E0F11</color>
+    <color name="edit_text_color">#484848</color>
+    <color name="hint_edit_text_color">#999999</color>
+    <color name="match_layout_color">#202125</color>
+    <color name="cardview_layout_color">#2B2D32</color>
+    <color name="cardview_2nd_layout_color">#202125</color>
+    <color name="tab_layout_color">#12BCE6</color>
 </resources>

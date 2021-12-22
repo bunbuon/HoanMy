@@ -8,6 +8,15 @@ public class Login {
     String project_id;
     String token;
     int status;
+    ProjectDetail project;
+
+    public ProjectDetail getProjectDetail() {
+        return project;
+    }
+
+    public void setProjectDetail(ProjectDetail project) {
+        this.project = project;
+    }
 
     public String get_id() {
         return _id;

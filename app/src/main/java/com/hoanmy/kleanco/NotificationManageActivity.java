@@ -28,7 +28,7 @@ public class NotificationManageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recyclerview_layout);
+        setContentView(R.layout.notification_layout);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         // add back arrow to toolbar

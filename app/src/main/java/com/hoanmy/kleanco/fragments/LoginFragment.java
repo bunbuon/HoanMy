@@ -114,8 +114,8 @@ public class LoginFragment extends BaseFragment implements IOnBackPressed {
         } else if (role.equals("customer")) {
             Paper.book().write(getString(R.string.status_login), "customer");
             Utils.nextCustomer(getActivity());
-        } else if (role.equals("employee")) {
-            Paper.book().write(getString(R.string.status_login), "employee");
+        } else if (role.equals("staff")) {
+            Paper.book().write(getString(R.string.status_login), "staff");
             Utils.nextEmployee(getActivity());
         } else {
             txtStatus.setVisibility(View.VISIBLE);

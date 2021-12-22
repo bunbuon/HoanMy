@@ -10,7 +10,7 @@
     <string name="hint_search">Nhập tên nhân viên</string>
     <string name="loss_password">Quên mật khẩu?</string>
     <string name="create_new_account">Đăng ký tài khoản mới.</string>
-    <string name="description_main">Cty TNHH Quản lý và Dịch vụ tài sản Thành Công</string>
+    <string name="description_main">Công ty TNHH Hoàn Mỹ</string>
     <string name="manage_job">Quản lý công việc</string>
     <string name="list_project">Danh sách dự án</string>
     <string name="list_employee">Danh sách nhân viên</string>
@@ -21,6 +21,9 @@
     <string name="status_error_login">*Username or Password is incorrect! Please try again.</string>
     <string name="notification">Thông Báo</string>
     <string name="status_login">STATUS_LOGIN</string>
+    <string name="text_tab_process">Đang làm</string>
+    <string name="text_tab_done">Đã làm</string>
+    <string name="text_job_done">Đã xong</string>
 
     <string-array name="project_arr">
         <item>Tên Dự Án</item>

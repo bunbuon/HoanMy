@@ -48,11 +48,12 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/layout_notification"
         android:orientation="vertical"
-        android:padding="@dimen/_20sdp">
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingRight="@dimen/_20sdp">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_20sdp"
@@ -61,15 +62,15 @@
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/thumb_profile"
             app:civ_border_color="#FFFFFF"
             app:civ_border_width="2dp" />
 
         <com.ctrlplusz.anytextview.AnyTextView
-            android:id="@+id/txt_name_manage"
+            android:id="@+id/txt_name_staff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -77,9 +78,10 @@
             android:fontFamily="@font/calibrib"
             android:text="Xin chào, Nguyễn Văn A"
             android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp" />
+            android:textSize="@dimen/_18sdp" />
 
         <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/txt_num_staff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -92,7 +94,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             app:cardBackgroundColor="@color/color_card_view"
             app:cardCornerRadius="5dp">
 
@@ -104,7 +106,7 @@
 
 
                 <com.ctrlplusz.anytextview.AnyTextView
-                    android:id="@+id/txt_time_job"
+                    android:id="@+id/txt_name_job"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/calibrib"
@@ -127,6 +129,7 @@
                         android:src="@drawable/ic_baseline_location_on_24" />
 
                     <com.ctrlplusz.anytextview.AnyTextView
+                        android:id="@+id/txt_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/calibri"
@@ -152,6 +155,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/calibri"
+                        android:id="@+id/txt_floor"
                         android:gravity="center"
                         android:text="Tầng 10"
                         android:textColor="@color/white"
@@ -171,14 +175,10 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginBottom="@dimen/_10sdp"
@@ -221,14 +221,25 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_manage_job"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/border_radius_button"
-            android:fontFamily="@font/calibri"
+            android:fontFamily="@font/calibrib"
             android:text="@string/manage_job_extra"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp" />
     </LinearLayout>
 
+    <com.ctrlplusz.anytextview.AnyTextView
+        android:id="@+id/txt_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/calibri"
+        android:padding="@dimen/_5sdp"
+        android:text="version: 0.0.1"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/_10sdp" />
 </RelativeLayout>

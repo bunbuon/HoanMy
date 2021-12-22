@@ -18,7 +18,7 @@ import com.hoanmy.kleanco.utils.NetworkStatusUtil;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragmentSearch extends Fragment {
     private Unbinder unbinder;
 
     private BroadcastReceiver br = new BroadcastReceiver() {
@@ -83,4 +83,5 @@ public abstract class BaseFragment extends Fragment {
     protected void onNetworkLost() {
     }
 
+    public abstract void beginSearch(String query);
 }

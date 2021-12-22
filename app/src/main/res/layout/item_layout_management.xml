@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/_10sdp"
-    android:layout_marginRight="@dimen/_10sdp"
     android:layout_marginTop="@dimen/_5sdp"
-    app:cardBackgroundColor="@color/color_key"
-    android:layout_height="wrap_content">
+    android:layout_marginRight="@dimen/_10sdp"
+    app:cardBackgroundColor="@color/color_key">
+
+    <RelativeLayout
+        android:id="@+id/color_status"
+        android:layout_width="@dimen/_5sdp"
+        android:layout_height="match_parent"
+        android:background="@color/red" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/_10sdp"
-        android:orientation="vertical">
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
 
         <RelativeLayout
             android:id="@+id/view_top"
@@ -24,8 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/calibrib"
-                android:textColor="@color/white"
                 android:text="Nguyen Van A"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />
 
             <com.ctrlplusz.anytextview.AnyTextView
@@ -34,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/calibrib"
-                android:text="01:30"
+                android:text="@string/text_job_done"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp" />
 
@@ -46,25 +53,25 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/calibri"
-            android:textColor="@color/white"
             android:text="7:00 - 8:15"
+            android:textColor="@color/white"
             android:textSize="@dimen/_14sdp" />
 
         <com.ctrlplusz.anytextview.AnyTextView
             android:id="@+id/txt_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_marginTop="@dimen/_5sdp"
             android:fontFamily="@font/calibri"
             android:text="Trực phát sinh ngoại cảnh, sảnh hay thang máy tầng hầm, WC tầng hầm"
+            android:textColor="@color/white"
             android:textSize="@dimen/_14sdp" />
 
         <RelativeLayout
             android:id="@+id/view_feedback"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edt_feedback"
@@ -74,9 +81,9 @@
                 android:background="@drawable/border_radius_edittext"
                 android:fontFamily="@font/calibri"
                 android:gravity="top|left"
-                android:padding="@dimen/_5sdp"
                 android:hint="@string/input_feedback"
                 android:maxLines="4"
+                android:padding="@dimen/_5sdp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray"
                 android:textSize="@dimen/_14sdp" />

@@ -9,12 +9,15 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.hoanmy.kleanco.CustomerActivity;
 import com.hoanmy.kleanco.R;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class NotificationForegroundService extends Service {
     public static final String CHANNEL_ID = "NotificationForegroundService";
@@ -26,7 +29,7 @@ public class NotificationForegroundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String input = intent.getStringExtra("inputExtra");
+        String nameJob = intent.getStringExtra("jobName");
         createNotificationChannel();
         Intent notificationIntent = new Intent(this, CustomerActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
@@ -35,6 +38,8 @@ public class NotificationForegroundService extends Service {
         // Get the layouts to use in the custom notification
         RemoteViews notificationLayout = new RemoteViews(getPackageName(), R.layout.custom_notification);
         RemoteViews notificationLayoutExpanded = new RemoteViews(getPackageName(), R.layout.custom_notification_expand);
+        notificationLayout.setTextViewText(R.id.tvTitle, nameJob);
+        notificationLayoutExpanded.setTextViewText(R.id.tvTitle, nameJob);
 // Apply the layouts to the notification
         Notification customNotification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.icon_hoanmy)

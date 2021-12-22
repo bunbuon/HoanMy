@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HoanMy.NoActionBar">
 
-        <activity android:name=".LoginActivity">
-            <intent-filter>
+        <activity android:name=".LoginActivity" android:screenOrientation="portrait">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomerActivity"></activity>
-        <activity android:name=".NotificationManageActivity"></activity>
-        <activity android:name=".ManagementActivity">
+        <activity android:name=".CustomerActivity" android:screenOrientation="portrait">  </activity>
+        <activity android:name=".NotificationManageActivity" android:screenOrientation="portrait">  </activity>
+        <activity android:name=".ManagementActivity" android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -33,11 +33,11 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProjectActivity"></activity>
-        <activity android:name=".ManagerActivity"></activity>
-        <activity android:name=".EmployeeListActivity"></activity>
-        <activity android:name=".ExtraInputJobActivity"></activity>
-        <activity android:name=".EmployeeAtivity"></activity>
+        <activity android:name=".ProjectActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ManagerActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".EmployeeListActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ExtraInputJobActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".EmployeeAtivity" android:screenOrientation="portrait"></activity>
         <activity android:name="com.zing.zalo.zalosdk.oauth.BrowserLoginActivity">
 
             <intent-filter>

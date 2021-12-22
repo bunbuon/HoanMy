@@ -8,5 +8,6 @@ public enum Action {
     CLOSE_AD_SPLASH,
     HAVE_ACCOUNT,
     REGISTER,
+    REQUEST_API_TASK_DONE,
     LOSS_PASSWORD
 }
