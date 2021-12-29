@@ -19,8 +19,90 @@ public class TaskProject {
     int status;
     long created_at;
     long updated_at;
+    long time_end_real_ts;
+    long time_period_diff;
+    long time_period_diff_ts;
+    long time_period_real;
+    long time_period_real_ts;
+    long time_start_real_ts;
     private User user;
-    private boolean isDone;
+    private boolean isDone = false;
+    int feedback_status;
+    int feedback_score;
+
+    public int getFeedback_score() {
+        return feedback_score;
+    }
+
+    public void setFeedback_score(int feedback_score) {
+        this.feedback_score = feedback_score;
+    }
+
+    public int getFeedback_status() {
+        return feedback_status;
+    }
+
+    public void setFeedback_status(int feedback_status) {
+        this.feedback_status = feedback_status;
+    }
+
+    public long getTime_end_real_ts() {
+        return time_end_real_ts;
+    }
+
+    public void setTime_end_real_ts(long time_end_real_ts) {
+        this.time_end_real_ts = time_end_real_ts;
+    }
+
+    public long getTime_period_diff() {
+        return time_period_diff;
+    }
+
+    public void setTime_period_diff(long time_period_diff) {
+        this.time_period_diff = time_period_diff;
+    }
+
+    public long getTime_period_diff_ts() {
+        return time_period_diff_ts;
+    }
+
+    public void setTime_period_diff_ts(long time_period_diff_ts) {
+        this.time_period_diff_ts = time_period_diff_ts;
+    }
+
+    public long getTime_period_real() {
+        return time_period_real;
+    }
+
+    public void setTime_period_real(long time_period_real) {
+        this.time_period_real = time_period_real;
+    }
+
+    public long getTime_period_real_ts() {
+        return time_period_real_ts;
+    }
+
+    public void setTime_period_real_ts(long time_period_real_ts) {
+        this.time_period_real_ts = time_period_real_ts;
+    }
+
+    public long getTime_start_real_ts() {
+        return time_start_real_ts;
+    }
+
+    public void setTime_start_real_ts(long time_start_real_ts) {
+        this.time_start_real_ts = time_start_real_ts;
+    }
+
+    public boolean isShowFeedback() {
+        return isShowFeedback;
+    }
+
+    public void setShowFeedback(boolean showFeedback) {
+        isShowFeedback = showFeedback;
+    }
+
+    private boolean isShowFeedback = false;
     private long timeStartFeedback = 0;
 
     public boolean isDone() {

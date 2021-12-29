@@ -91,11 +91,41 @@ public class RequestApi {
         @POST("/task/feedback")
         Observable<JsonElement> postFeedback(@Query("token") String token, @Body JsonObject body);
 
+        @Headers("Content-Type: application/json")
+        @POST("/task/complete")
+        Observable<JsonElement> postDoneJob(@Query("token") String token, @Body JsonObject body);
+
+        @Headers("Content-Type: application/json")
+        @POST("/task/extra/start")
+        Observable<JsonElement> postExtraJobStart(@Query("token") String token, @Body JsonObject body);
+
+        @Headers("Content-Type: application/json")
+        @POST("/task/extra/end")
+        Observable<JsonElement> postExtraJobEnd(@Query("token") String token, @Body JsonObject body);
+
+        @Headers("Content-Type: application/json")
+        @POST("/task/pause/start")
+        Observable<JsonElement> postPauseJobStart(@Query("token") String token, @Body JsonObject body);
+
+        @Headers("Content-Type: application/json")
+        @POST("/task/pause/end")
+        Observable<JsonElement> postPauseJobEnd(@Query("token") String token, @Body JsonObject body);
+
         @GET("/project/detail")
         Observable<JsonElement> getDetailProject(@Query("token") String token);
 
+        @GET("/project")
+        Observable<JsonElement> getProjects(@Query("token") String token);
+
+        @GET("/project/staff")
+        Observable<JsonElement> getEmployees(@Query("token") String token, @Query("project_id") String project_id);
+
         @GET("/project/task")
-        Observable<JsonElement> getProjectForId(@Query("token") String token, @Query("status") String status);
+        Observable<JsonElement> getProjectForId(@Query("token") String token, @Query("status") String status, @Query("date") String date, @Query("limit") int limit);
+
+
+        @GET("/project/task")
+        Observable<JsonElement> getProjectForFeedback(@Query("token") String token, @Query("status") String status, @Query("date") String date, @Query("feedback_status") int feedback);
 
     }
 }

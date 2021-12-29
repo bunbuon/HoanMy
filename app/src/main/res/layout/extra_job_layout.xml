@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -23,227 +24,173 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.ctrlplusz.anytextview.AnyTextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:fontFamily="@font/calibrib"
-        android:gravity="center_horizontal"
-        android:text="Bạn vui lòng nhập thông tin để thêm công việc phát sinh."
-        android:textColor="@color/color_key"
-        android:textSize="@dimen/_16sdp" />
+        android:layout_below="@+id/appbar"
+        android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/border_radius_button"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/spinner_project"
+        <com.ctrlplusz.anytextview.AnyTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:spinnerMode="dropdown" />
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:fontFamily="@font/calibrib"
+            android:gravity="center_horizontal"
+            android:text="Bạn vui lòng nhập thông tin để thêm công việc phát sinh."
+            android:textColor="@color/color_key"
+            android:textSize="@dimen/_14sdp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:src="@drawable/tooltip_arrow_down" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/border_radius_button"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/spinner_employee"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_job_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:spinnerMode="dropdown" />
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/border_radius_edittext"
+            android:fontFamily="@font/calibrib"
+            android:gravity="top|left"
+            android:hint="@string/input_job_extra"
+            android:maxLines="3"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/color_key"
+            android:textColorHint="@color/color_key"
+            android:textSize="@dimen/_12sdp" />
 
-        <ImageView
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+            android:id="@+id/ssProjects"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:src="@drawable/tooltip_arrow_down" />
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:gravity="center_horizontal"
+            app:BoarderColor="@android:color/holo_blue_light"
+            app:BordersSize="1dp"
+            app:DoneSearchTintColor="@android:color/white"
+            app:KeepLastSearch="false"
+            app:RevealEmptyText="Chọn dự án"
+            app:RevealViewBackgroundColor="@android:color/holo_blue_light"
+            app:SearchViewBackgroundColor="@android:color/holo_blue_light"
+            app:ShowBorders="true"
+            app:SpinnerExpandHeight="0dp"
+            app:StartSearchTintColor="@android:color/white" />
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/border_radius_button"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/spinner_job"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:spinnerMode="dropdown" />
-
-        <ImageView
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+            android:id="@+id/ssEmployees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:src="@drawable/tooltip_arrow_down" />
-
-    </RelativeLayout>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        app:cardBackgroundColor="@color/color_key"
-        app:cardCornerRadius="@dimen/_5sdp">
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:gravity="center_horizontal"
+            app:BoarderColor="@android:color/holo_blue_light"
+            app:BordersSize="1dp"
+            app:DoneSearchTintColor="@android:color/white"
+            app:KeepLastSearch="false"
+            app:RevealEmptyText="Chọn nhân viên"
+            app:RevealViewBackgroundColor="@android:color/holo_blue_light"
+            app:SearchViewBackgroundColor="@android:color/holo_blue_light"
+            app:ShowBorders="true"
+            app:SpinnerExpandHeight="0dp"
+            app:StartSearchTintColor="@android:color/white" />
 
         <LinearLayout
-            android:id="@+id/layout_select_time_start"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/_5sdp">
-
-            <com.ctrlplusz.anytextview.AnyTextView
-                android:id="@+id/select_time_start"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/calibrib"
-                android:gravity="center_horizontal"
-                android:text="Bạn vui lòng chọn thời gian bắt đầu"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp" />
-
-            <com.ctrlplusz.anytextview.AnyTextView
-                android:id="@+id/value_time_start"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/calibrib"
-                android:gravity="center_horizontal"
-                android:text="07:00 AM"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_20sdp" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        app:cardBackgroundColor="@color/color_key"
-        app:cardCornerRadius="@dimen/_5sdp">
-
-        <LinearLayout
-            android:id="@+id/layout_select_time_duration"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/_5sdp">
-
-            <com.ctrlplusz.anytextview.AnyTextView
-                android:id="@+id/select_time_duration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/calibrib"
-                android:gravity="center_horizontal"
-                android:text="Bạn vui lòng chọn thời gian công việc"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp" />
-
-            <com.ctrlplusz.anytextview.AnyTextView
-                android:id="@+id/value_time_duration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/calibrib"
-                android:gravity="center_horizontal"
-                android:text="00:30"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_20sdp" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/border_radius_button"
-        android:orientation="horizontal">
-
-        <Spinner
-            android:id="@+id/spinner_frequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
-            android:background="@android:color/transparent"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
             android:gravity="center"
-            android:spinnerMode="dropdown" />
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:src="@drawable/tooltip_arrow_down" />
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/tvText_time"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_weight="1"
+                android:background="@drawable/border_radius_button"
+                android:ems="10"
+                android:fontFamily="@font/calibri"
+                android:gravity="center"
+                android:hint="@string/add_time"
+                android:inputType="time"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
+            <com.ctrlplusz.anytextview.AnyEditTextView
+                android:id="@+id/editText_time"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@drawable/border_radius_button"
+                android:ems="10"
+                android:fontFamily="@font/calibri"
+                android:gravity="center"
+                android:hint="@string/add_minute"
+                android:inputType="time"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        <com.ctrlplusz.anytextview.AnyEditTextView
+            android:id="@+id/editArea"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/border_radius_button"
+            android:fontFamily="@font/calibri"
+            android:gravity="top|left"
+            android:hint="@string/extra_area"
+            android:inputType="time"
+            android:padding="@dimen/_2sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ctrlplusz.anytextview.AnyEditTextView
+            android:id="@+id/editFloor"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/border_radius_button"
+            android:fontFamily="@font/calibri"
+            android:gravity="center"
+            android:hint="@string/extra_floor"
+            android:inputType="time"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/loadingBar"
+        style="?android:progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_done"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/_20sdp"
         android:background="@drawable/border_radius_button"
@@ -251,4 +198,4 @@
         android:text="@string/add_job"
         android:textColor="@color/white"
         android:textSize="@dimen/_16sdp" />
-</LinearLayout>
+</RelativeLayout>

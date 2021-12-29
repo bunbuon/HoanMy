@@ -35,8 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/calibrib"
-                android:text="Ông Nguyễn Văn A-B"
                 android:gravity="center_horizontal"
+                android:text="Ông Nguyễn Văn A-B"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp" />
 

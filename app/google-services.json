@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "232804683979",
+    "project_id": "hoan-my-service",
+    "storage_bucket": "hoan-my-service.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232804683979:android:402ad38d8fd7332e8a0b4e",
+        "android_client_info": {
+          "package_name": "com.hoanmy.kleanco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232804683979-lbr36crgpvrks3tb6hq8ak7l3ss1gp7k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJlSAPogvEzzHOFqd4Ut-M3DNk68VDglE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232804683979-lbr36crgpvrks3tb6hq8ak7l3ss1gp7k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,6 +14,23 @@ public class ProjectDetail {
     long created_at;
     long updated_at;
     int users_by_project;
+    int number_of_staff;
+
+    public int getUsers_by_project() {
+        return users_by_project;
+    }
+
+    public void setUsers_by_project(int users_by_project) {
+        this.users_by_project = users_by_project;
+    }
+
+    public int getNumber_of_staff() {
+        return number_of_staff;
+    }
+
+    public void setNumber_of_staff(int number_of_staff) {
+        this.number_of_staff = number_of_staff;
+    }
 
     public String get_id() {
         return _id;

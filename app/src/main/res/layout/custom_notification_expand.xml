@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/_10sdp">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/layout_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -14,12 +14,14 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_weight="3"
+            android:ellipsize="marquee"
             android:fontFamily="@font/calibrib"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
+            android:maxLines="5"
             android:text="Dọn Vệ Sinh Tầng 1"
             android:textColor="@color/color_key"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/txt_time"
@@ -32,14 +34,15 @@
             android:gravity="center_horizontal"
             android:text="01p:30s"
             android:textColor="@color/color_key"
-            android:textSize="@dimen/_16sdp" />
+            android:textSize="@dimen/_14sdp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_25sdp"
+        android:layout_below="@+id/layout_top"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginBottom="@dimen/_10sdp"
         android:orientation="horizontal">
 

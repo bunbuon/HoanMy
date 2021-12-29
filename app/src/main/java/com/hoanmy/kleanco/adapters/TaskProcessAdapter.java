@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +26,11 @@ import com.hoanmy.kleanco.R;
 import com.hoanmy.kleanco.api.RequestApi;
 import com.hoanmy.kleanco.commons.Action;
 import com.hoanmy.kleanco.commons.Constants;
+import com.hoanmy.kleanco.commons.RemoveItemViewListener;
 import com.hoanmy.kleanco.models.Login;
 import com.hoanmy.kleanco.models.TaskProject;
+import com.hoanmy.kleanco.services.NotificationForegroundService;
+import com.hoanmy.kleanco.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
@@ -34,6 +38,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -48,12 +54,17 @@ public class TaskProcessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     static List<TaskProject> itemListSearch;
     private static Activity mActivity;
     static long timeCurrent;
-    private static TaskProject taskProject;
+    private static int positionItem;
+    private boolean isClick = false;
 
-    public TaskProcessAdapter(Activity activity, List<TaskProject> items) {
+
+    private RemoveItemViewListener removeItemViewListener;
+
+    public TaskProcessAdapter(Activity activity, List<TaskProject> items, RemoveItemViewListener _removeItemViewListener) {
         mActivity = activity;
         this.itemList = items;
         this.itemListSearch = items;
+        this.removeItemViewListener = _removeItemViewListener;
     }
 
     @NonNull
@@ -112,77 +123,129 @@ public class TaskProcessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         @SuppressLint("ResourceAsColor")
         private void showViews(final RecyclerView.Adapter adapter, final List<TaskProject> taskProjects, final int position) {
-            taskProject = taskProjects.get(position);
-            if (taskProject.getStatus() == 1){
+            viewFeedback.setVisibility(View.GONE);
+            positionItem = position;
+            timeCurrent = System.currentTimeMillis() / 1000;
+            isClick = false;
+            if (itemListSearch.get(position).getStatus() == 1) {
                 viewStatusColor.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            }else  if (taskProject.getStatus() == 2){
+            } else if (itemListSearch.get(position).getStatus() == 2) {
                 viewStatusColor.setBackgroundColor(Color.parseColor("#FF03DAC5"));
             }
-            long timeTest = 1640023770;
-            txtNameCustomer.setText(taskProject.getUser().getName());
-            txtDes.setText(taskProject.getName());
-            txtTimeCounter.setText(taskProject.getTime_period() + "p:00s");
-            txtTime.setText(taskProject.getTime_start() + " - " + taskProject.getTime_end() + " / " + taskProject.getDate_str());
-            if (taskProject.getTimeStartFeedback() <= 0) {
-                taskProject.setTimeStartFeedback(timeTest + 120);
+            long timeEndTimestamp = itemListSearch.get(position).getTime_end_timestamp();
+
+            txtNameCustomer.setText(itemListSearch.get(position).getUser().getName());
+            txtDes.setText(itemListSearch.get(position).getName());
+            txtTimeCounter.setText(itemListSearch.get(position).getTime_period() + "p:00s");
+            txtTime.setText(itemListSearch.get(position).getTime_start() + " - " + itemListSearch.get(position).getTime_end() + " / " + itemListSearch.get(position).getDate_str());
+
+            if (itemListSearch.get(position).getTime_end_real_ts() > 0) {
+                itemListSearch.get(position).setTimeStartFeedback(itemListSearch.get(position).getTime_end_real_ts() + 120);
+            } else {
+                itemListSearch.get(position).setTimeStartFeedback(timeEndTimestamp + 120);
             }
-            timeCurrent = System.currentTimeMillis() / 1000;
-            if (timeCurrent >= taskProject.getTime_start_timestamp() && !taskProject.isDone()) {
-                initCountDownTimer((timeTest - timeCurrent) * 1000);
-            } else if (taskProject.isDone() && taskProject.getTimeStartFeedback() > timeCurrent) {
+            if (itemListSearch.get(position).getTimeStartFeedback() > timeCurrent && timeCurrent > timeEndTimestamp) {
+                itemListSearch.get(position).setDone(true);
+            }
+            if (timeCurrent >= itemListSearch.get(position).getTime_start_timestamp() && timeEndTimestamp > timeCurrent
+                    && itemListSearch.get(position).getStatus() != 4 && itemListSearch.get(position).getStatus() != 3) {
+                mTimer = new Timer();
+                mTimer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        mHandler.post(new Runnable() {
+
+                            @Override
+                            public void run() {
+
+                                long countTime = 0;
+                                long timeCurrent = System.currentTimeMillis() / 1000;
+                                if (itemListSearch.size() > 0) {
+                                    if (timeCurrent <= timeEndTimestamp) {
+                                        countTime = (timeEndTimestamp - timeCurrent);
+                                    } else if (itemListSearch.get(position).getTimeStartFeedback() > timeCurrent) {
+                                        countTime = itemListSearch.get(position).getTimeStartFeedback() - timeCurrent;
+                                        itemListSearch.get(position).setDone(true);
+                                        viewFeedback.setVisibility(View.VISIBLE);
+                                    } else if (itemListSearch.get(position).getTimeStartFeedback() < timeCurrent) {
+                                        viewFeedback.setVisibility(View.GONE);
+                                        postDataFeedback(itemListSearch.get(positionItem), 1, edtFeedback.getText().toString(), positionItem, itemView);
+                                        mTimer.cancel();
+                                    }
+
+                                    txtTimeCounter.setText(String.format("%02d:%02d:%02d",
+                                            TimeUnit.SECONDS.toHours(countTime) % 60,
+                                            TimeUnit.SECONDS.toMinutes(countTime) % 60,
+                                            TimeUnit.SECONDS.toSeconds(countTime) % 60));
+                                }
+                            }
+
+                        });
+                    }
+                }, 1000, NOTIFY_INTERVAL);
+            } else if (itemListSearch.get(position).isDone() || itemListSearch.get(position).getStatus() == 4 || itemListSearch.get(position).getStatus() == 3) {
                 viewFeedback.setVisibility(View.VISIBLE);
-                initCountDownTimerFeedback((taskProject.getTimeStartFeedback() - timeCurrent) * 1000);
+                mTimer2 = new Timer();
+                mTimer2.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        mHandler2.post(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                long countTime = 0;
+                                long timeCurrent = System.currentTimeMillis() / 1000;
+                                if (itemListSearch.size() > 0) {
+                                    Log.d(Utils.TAG, "runmHandlerPos:----------- " + position);
+                                    if (position >= itemListSearch.size())
+                                        return;
+                                    if (itemListSearch.get(position).getTimeStartFeedback() > timeCurrent) {
+                                        countTime = itemListSearch.get(position).getTimeStartFeedback() - timeCurrent;
+                                        viewFeedback.setVisibility(View.VISIBLE);
+                                    } else if (itemListSearch.get(position).getTimeStartFeedback() < timeCurrent) {
+                                        viewFeedback.setVisibility(View.GONE);
+                                        postDataFeedback(itemListSearch.get(positionItem), 1, edtFeedback.getText().toString(), positionItem, itemView);
+                                        mTimer2.cancel();
+                                    }
+
+                                    txtTimeCounter.setText(String.format("%02d:%02d:%02d",
+                                            TimeUnit.SECONDS.toHours(countTime) % 60,
+                                            TimeUnit.SECONDS.toMinutes(countTime) % 60,
+                                            TimeUnit.SECONDS.toSeconds(countTime) % 60));
+                                }
+                            }
+
+                        });
+                    }
+                }, 1000, NOTIFY_INTERVAL);
             }
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    postDataFeedback(taskProject, 1, edtFeedback.getText().toString(), position, itemView);
+                    isClick = true;
+                    postDataFeedback(itemListSearch.get(position), 1, edtFeedback.getText().toString(), position, itemView);
                 }
             });
             btnNotCompleted.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    postDataFeedback(taskProject, 0, edtFeedback.getText().toString(), position, itemView);
+                    isClick = true;
+                    postDataFeedback(itemListSearch.get(position), 0, edtFeedback.getText().toString(), position, itemView);
                 }
             });
         }
 
-        public void initCountDownTimer(long time) {
-            new CountDownTimer(time, 1000) {
+        private Handler mHandler = new Handler();
+        private Handler mHandler2 = new Handler();
+        public Timer mTimer = null;
+        public Timer mTimer2 = null;
+        public final long NOTIFY_INTERVAL = 1000;
 
-                public void onTick(long millisUntilFinished) {
-                    txtTimeCounter.setText("time jobs: " +
-                            String.format("%02d:%02d:%02d",
-                                    TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
-                }
-
-                public void onFinish() {
-                    Log.d("TAG", "showViews:onFinish ");
-                    viewFeedback.setVisibility(View.VISIBLE);
-                    taskProject.setDone(true);
-                    timeCurrent = System.currentTimeMillis() / 1000;
-                    initCountDownTimerFeedback((taskProject.getTimeStartFeedback() - timeCurrent) * 1000);
-                }
-            }.start();
-        }
-
-        public void initCountDownTimerFeedback(long timeFeeback) {
-            new CountDownTimer(timeFeeback, 1000) {
-
-                public void onTick(long millisUntilFinished) {
-                    txtTimeCounter.setText("time feedback: " +
-                            String.format("%02d:%02d:%02d",
-                                    TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
-                }
-
-                public void onFinish() {
-                    txtTimeCounter.setText("done!");
-                }
-            }.start();
+        private void cancelTimer(Timer mTimer) {
+            if (mTimer != null) {
+                mTimer.cancel();
+                mTimer.purge();
+            }
         }
 
         private void postDataFeedback(TaskProject project, int status, String feedback, int pos, View itemView) {
@@ -204,6 +267,7 @@ public class TaskProcessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     .subscribe(new Action1<JsonElement>() {
                         @Override
                         public void call(JsonElement jsonElement) {
+                            isClick = false;
                             removeItem(pos, project, itemView);
 
                         }
@@ -214,12 +278,12 @@ public class TaskProcessAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         }
                     });
         }
+
         private void removeItem(int position, TaskProject taskProject, View itemView) {
-            EventBus.getDefault().post(Action.REQUEST_API_TASK_DONE);
-            itemList.remove(taskProject);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, itemList.size());
+
             itemView.setVisibility(View.GONE);
+            removeItemViewListener.onChangeData(taskProject);
+
         }
 
     }

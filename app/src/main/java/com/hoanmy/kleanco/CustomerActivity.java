@@ -1,9 +1,5 @@
 package com.hoanmy.kleanco;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,17 +9,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.ctrlplusz.anytextview.AnyTextView;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
-import com.hoanmy.kleanco.api.RequestApi;
-import com.hoanmy.kleanco.commons.Constants;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.hoanmy.kleanco.models.Login;
-import com.hoanmy.kleanco.models.ProjectsForID;
-import com.hoanmy.kleanco.services.NotificationForegroundService;
 import com.hoanmy.kleanco.utils.Utils;
-import com.zing.zalo.zalosdk.oauth.ZaloOpenAPICallback;
 
 import org.json.JSONObject;
 
@@ -31,11 +26,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.paperdb.Paper;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
-public class CustomerActivity extends AppCompatActivity implements ZaloOpenAPICallback {
+public class CustomerActivity extends AppCompatActivity {
     private String name_manage;
     @BindView(R.id.txt_name_manage)
     AnyTextView txtNameManager;
@@ -105,7 +97,21 @@ public class CustomerActivity extends AppCompatActivity implements ZaloOpenAPICa
             txtNameManager.setText("Xin chào " + loginData.getName());
             txtMail.setText(loginData.getProjectDetail().getEmail());
             txtTimeJob.setText(loginData.getProjectDetail().getHour_start() + " - " + loginData.getProjectDetail().getHour_end());
+            txtPhoneNumber.setText(loginData.getProjectDetail().getPhone());
         }
+
+        FirebaseMessaging.getInstance().subscribeToTopic(loginData.get_id())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = getString(R.string.msg_subscribed);
+                        if (!task.isSuccessful()) {
+                            msg = getString(R.string.msg_subscribe_failed);
+                        }
+                        Log.d(Utils.TAG, msg);
+                        Toast.makeText(CustomerActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
@@ -138,19 +144,5 @@ public class CustomerActivity extends AppCompatActivity implements ZaloOpenAPICa
         }
     }
 
-    public void startService() {
-        Intent serviceIntent = new Intent(this, NotificationForegroundService.class);
-        serviceIntent.putExtra("inputExtra", "Foreground Service Example in Android");
-        ContextCompat.startForegroundService(this, serviceIntent);
-    }
 
-    public void stopService() {
-        Intent serviceIntent = new Intent(this, NotificationForegroundService.class);
-        stopService(serviceIntent);
-    }
-
-    @Override
-    public void onResult(JSONObject jsonObject) {
-        Log.d("TAG", "onResult: ");
-    }
 }

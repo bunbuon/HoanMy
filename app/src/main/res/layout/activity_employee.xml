@@ -1,245 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/swipeContainer"
     android:background="@drawable/home_bg"
     tools:context=".CustomerActivity">
 
     <RelativeLayout
-        android:id="@+id/layout_notification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/_10sdp">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_baseline_logout_36" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_baseline_notifications_24" />
-
-        <com.ctrlplusz.anytextview.AnyTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:background="@drawable/border_circle_textview"
-            android:gravity="center"
-            android:text="6"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp" />
-    </RelativeLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/layout_notification"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/_20sdp"
-        android:paddingRight="@dimen/_20sdp">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:scaleType="centerInside"
-            android:src="@drawable/home_logo" />
-
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/thumb_profile"
-            app:civ_border_color="#FFFFFF"
-            app:civ_border_width="2dp" />
-
-        <com.ctrlplusz.anytextview.AnyTextView
-            android:id="@+id/txt_name_staff"
+        <RelativeLayout
+            android:id="@+id/layout_notification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/calibrib"
-            android:text="Xin chào, Nguyễn Văn A"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_18sdp" />
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp">
 
-        <com.ctrlplusz.anytextview.AnyTextView
-            android:id="@+id/txt_num_staff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/calibri"
-            android:gravity="center"
-            android:text="Mã số NV: 1548348"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_16sdp" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:cardBackgroundColor="@color/color_card_view"
-            app:cardCornerRadius="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_logout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/_10sdp">
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_baseline_logout_36" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_baseline_notifications_24" />
 
-                <com.ctrlplusz.anytextview.AnyTextView
-                    android:id="@+id/txt_name_job"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/calibrib"
-                    android:gravity="center"
-                    android:padding="@dimen/_10sdp"
-                    android:text="Dọn dẹp nhà VS "
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14sdp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_baseline_location_on_24" />
-
-                    <com.ctrlplusz.anytextview.AnyTextView
-                        android:id="@+id/txt_location"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/calibri"
-                        android:gravity="center"
-                        android:text="Roman Plaza"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/ic_baseline_location_city_24" />
-
-                    <com.ctrlplusz.anytextview.AnyTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/calibri"
-                        android:id="@+id/txt_floor"
-                        android:gravity="center"
-                        android:text="Tầng 10"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp" />
-                </LinearLayout>
-
-                <com.ctrlplusz.anytextview.AnyTextView
-                    android:id="@+id/txt_time_duration"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:fontFamily="@font/calibrib"
-                    android:padding="@dimen/_10sdp"
-                    android:text="01:30"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_22sdp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@drawable/border_circle_textview"
+                android:gravity="center"
+                android:text="6"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/layout_notification"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_20sdp"
+            android:paddingRight="@dimen/_20sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:scaleType="centerInside"
+                android:src="@drawable/home_logo" />
+
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/thumb_profile"
+                app:civ_border_color="#FFFFFF"
+                app:civ_border_width="2dp" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/txt_name_staff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/calibrib"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sdp" />
+
+            <com.ctrlplusz.anytextview.AnyTextView
+                android:id="@+id/txt_num_staff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/calibri"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:cardBackgroundColor="@color/color_card_view"
+                app:cardCornerRadius="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+
+                    <com.ctrlplusz.anytextview.AnyTextView
+                        android:id="@+id/txt_name_job"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="marquee"
+                        android:fontFamily="@font/calibrib"
+                        android:gravity="center"
+                        android:maxLines="4"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_baseline_location_on_24" />
+
+                        <com.ctrlplusz.anytextview.AnyTextView
+                            android:id="@+id/txt_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/calibri"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_baseline_location_city_24" />
+
+                        <com.ctrlplusz.anytextview.AnyTextView
+                            android:id="@+id/txt_floor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/calibri"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+                    <com.ctrlplusz.anytextview.AnyTextView
+                        android:id="@+id/txt_time_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/calibrib"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_22sdp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_pause"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_radius_button"
+                    android:fontFamily="@font/calibrib"
+                    android:text="Tạm Dừng"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_continue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_radius_button"
+                    android:fontFamily="@font/calibrib"
+                    android:text="Tiếp Tục"
+                    android:textColor="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_radius_button"
+                    android:fontFamily="@font/calibrib"
+                    android:text="Hoàn tất"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_pause"
+                android:id="@+id/btn_extra_job"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_weight="1"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:background="@drawable/border_radius_button"
                 android:fontFamily="@font/calibrib"
-                android:text="Tạm Dừng"
-                android:textColor="@color/white" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_continue"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:background="@drawable/border_radius_button"
-                android:fontFamily="@font/calibrib"
-                android:text="Tiếp Tục"
-                android:textColor="@color/white" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_done"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:background="@drawable/border_radius_button"
-                android:fontFamily="@font/calibrib"
-                android:text="Hoàn tất"
-                android:textColor="@color/white" />
+                android:text="@string/manage_job_extra"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_manage_job"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:background="@drawable/border_radius_button"
-            android:fontFamily="@font/calibrib"
-            android:text="@string/manage_job_extra"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_16sdp" />
-    </LinearLayout>
+        <com.ctrlplusz.anytextview.AnyTextView
+            android:id="@+id/txt_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/calibri"
+            android:padding="@dimen/_5sdp"
+            android:text="version: 0.0.1"
+            android:textColor="@color/hint_edit_text_color"
+            android:textSize="@dimen/_10sdp" />
 
-    <com.ctrlplusz.anytextview.AnyTextView
-        android:id="@+id/txt_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:fontFamily="@font/calibri"
-        android:padding="@dimen/_5sdp"
-        android:text="version: 0.0.1"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/_10sdp" />
-</RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/viewLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#7F000000"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/loadingBar"
+                style="?android:progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -36,7 +36,6 @@ public class TaskDoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     static List<TaskProject> itemList;
     static List<TaskProject> itemListSearch;
     private static Activity mActivity;
-    static long timeCurrent;
     private static TaskProject taskProject;
 
     public TaskDoneAdapter(Activity activity, List<TaskProject> items) {
@@ -96,68 +95,23 @@ public class TaskDoneAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         @SuppressLint("ResourceAsColor")
         private void showViews(final RecyclerView.Adapter adapter, final List<TaskProject> taskProjects, final int position) {
             taskProject = taskProjects.get(position);
-            if (taskProject.getStatus() == 4) {
+            if (taskProject.getStatus() == 3) {
+                txtTimeCounter.setText("Quá thời gian");
+                viewStatusColor.setBackgroundColor(Color.parseColor("#FD6602"));
+            } else if (taskProject.getStatus() == 4) {
+
+                txtTimeCounter.setText("Hoàn thành");
                 viewStatusColor.setBackgroundColor(Color.parseColor("#999999"));
             } else if (taskProject.getStatus() == 5) {
+
+                txtTimeCounter.setText("Chưa hoàn thành");
                 viewStatusColor.setBackgroundColor(Color.parseColor("#FF0000"));
             }
 
-            long timeTest = 1639767587;
             txtNameCustomer.setText(taskProject.getUser().getName());
             txtDes.setText(taskProject.getName());
-//            txtTimeCounter.setText(taskProject.getTime_period() + "p:00s");
             txtTime.setText(taskProject.getTime_start() + " - " + taskProject.getTime_end() + " / " + taskProject.getDate_str());
-//            if (taskProject.getTimeStartFeedback() <= 0) {
-//                taskProject.setTimeStartFeedback(timeTest + 120);
-//                Log.d("TAG", "showViews1: " + taskProject.getTimeStartFeedback() + "position " + position);
-//            }
-//            timeCurrent = System.currentTimeMillis() / 1000;
-//            if (timeCurrent >= taskProject.getTime_start_timestamp() && !taskProject.isDone()) {
-//                initCountDownTimer((timeTest - timeCurrent) * 1000);
-//                Log.d("TAG", "showViews: " + timeCurrent);
-//            }else if (taskProject.isDone() && taskProject.getTimeStartFeedback() > timeCurrent){
-//                Log.d("TAG", "showViews:---- " + (taskProject.getTimeStartFeedback() - timeCurrent));
-//                viewFeedback.setVisibility(View.VISIBLE);
-//                initCountDownTimerFeedback((taskProject.getTimeStartFeedback() - timeCurrent)*1000);
-//            }
-        }
 
-        public void initCountDownTimer(long time) {
-            new CountDownTimer(time, 1000) {
-
-                public void onTick(long millisUntilFinished) {
-                    txtTimeCounter.setText("time jobs: " +
-                            String.format("%02d:%02d:%02d",
-                                    TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
-                }
-
-                public void onFinish() {
-                    Log.d("TAG", "showViews:onFinish ");
-                    viewFeedback.setVisibility(View.VISIBLE);
-                    taskProject.setDone(true);
-                    timeCurrent = System.currentTimeMillis() / 1000;
-                    initCountDownTimerFeedback((taskProject.getTimeStartFeedback() - timeCurrent) * 1000);
-                }
-            }.start();
-        }
-
-        public void initCountDownTimerFeedback(long timeFeeback) {
-            new CountDownTimer(timeFeeback, 1000) {
-
-                public void onTick(long millisUntilFinished) {
-                    txtTimeCounter.setText("time feedback: " +
-                            String.format("%02d:%02d:%02d",
-                                    TimeUnit.MILLISECONDS.toHours(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
-                }
-
-                public void onFinish() {
-                    txtTimeCounter.setText("done!");
-                }
-            }.start();
         }
 
 

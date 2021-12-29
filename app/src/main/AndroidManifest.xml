@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hoanmy.kleanco">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -15,16 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HoanMy.NoActionBar">
 
-        <activity android:name=".LoginActivity" android:screenOrientation="portrait">
-        <intent-filter>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomerActivity" android:screenOrientation="portrait">  </activity>
-        <activity android:name=".NotificationManageActivity" android:screenOrientation="portrait">  </activity>
-        <activity android:name=".ManagementActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".CustomerActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".NotificationManageActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ManagementActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -33,34 +42,51 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProjectActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".ManagerActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".EmployeeListActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".ExtraInputJobActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".EmployeeAtivity" android:screenOrientation="portrait"></activity>
-        <activity android:name="com.zing.zalo.zalosdk.oauth.BrowserLoginActivity">
+        <activity
+            android:name=".ProjectActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ManagerActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".EmployeeListActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ExtraInputJobActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".EmployeeAtivity"
+            android:screenOrientation="portrait"></activity>
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="zalo-xxxxx" />
-            </intent-filter>
-        </activity>
 
         <receiver
             android:name=".receivers.NotificationDismissedReceiver"
             android:exported="false"></receiver>
+
         <service
             android:name=".services.NotificationForegroundService"
             android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".services.HandleClickService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".services.MyFirebaseMessagingService"
+            android:directBootAware="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
-
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_baseline_notifications_24" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/color_key" />
     </application>
-    <meta-data
-        android:name="com.zing.zalo.zalosdk.appID"
-        android:value="@string/appIdZalo" />
 </manifest>

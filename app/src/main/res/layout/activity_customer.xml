@@ -192,7 +192,7 @@
         android:layout_alignParentBottom="true"
         android:fontFamily="@font/calibri"
         android:text="version: 0.0.1"
-        android:textColor="@color/gray"
+        android:textColor="@color/hint_edit_text_color"
         android:padding="@dimen/_5sdp"
         android:textSize="@dimen/_10sdp" />
 </RelativeLayout>

@@ -23,17 +23,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:background="@color/color_key"
-        android:iconifiedByDefault="false"
-        android:queryHint="Tìm kiếm dự án">
-
-    </SearchView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_list"
         android:layout_width="match_parent"

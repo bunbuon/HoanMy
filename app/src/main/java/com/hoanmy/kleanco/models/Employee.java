@@ -13,6 +13,24 @@ public class Employee {
     int status;
     long created_at;
     long updated_at;
+    String avatar;
+    String note;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
 
     public String get_id() {
         return _id;

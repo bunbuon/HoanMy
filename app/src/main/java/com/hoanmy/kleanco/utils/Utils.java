@@ -15,6 +15,7 @@ import java.util.Date;
 import io.paperdb.Paper;
 
 public class Utils {
+    public static String TAG = "Hoanmy----";
     private static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
     public static String getTime(String day) {

@@ -6,7 +6,9 @@ import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.ctrlplusz.anytextview.AnyTextView;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
@@ -22,7 +24,9 @@ import com.hoanmy.kleanco.models.TaskProject;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -37,6 +41,11 @@ public class FragmentTaskDone extends BaseFragmentSearch {
     public RecyclerView recyclerView;
     @BindView(R.id.loadingBar)
     ProgressBar progressBar;
+
+    @BindView(R.id.txt_notification)
+    AnyTextView txtNotification;
+    @BindView(R.id.swipeContainer)
+    SwipeRefreshLayout swipeRefreshLayout;
     private TaskDoneAdapter taskDoneAdapter;
     private List<TaskProject> itemList = new ArrayList<>();
     private Login loginData;
@@ -45,11 +54,11 @@ public class FragmentTaskDone extends BaseFragmentSearch {
     protected void onCreateView(Bundle savedInstanceState) {
         loginData = Paper.book().read("login");
         linearLayoutManager = new LinearLayoutManager(getContext());
-
+        swipeRefreshLayout.setEnabled(false);
         taskDoneAdapter = new TaskDoneAdapter(getActivity(), itemList);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(taskDoneAdapter);
-        getDetailProject(loginData.getToken());
+
     }
 
     @Override
@@ -62,46 +71,29 @@ public class FragmentTaskDone extends BaseFragmentSearch {
         taskDoneAdapter.getFilter().filter(query);
     }
 
-    private void getDetailProject(String token) {
-        RequestApi.getInstance().getProjectForId(token, "4,5").retry(Constants.NUMBER_RETRY_IF_CALL_API_FAIL)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<JsonElement>() {
-                    @Override
-                    public void call(JsonElement jsonElement) {
-                        ProjectsForID projectsForID = new Gson().fromJson(jsonElement.getAsJsonObject().get("data"), new TypeToken<ProjectsForID>() {
-                        }.getType());
-                        progressBar.setVisibility(View.GONE);
-                        itemList.clear();
-                        itemList.addAll(projectsForID.getTaskProjects());
-                        taskDoneAdapter.notifyDataSetChanged();
-
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        throwable.printStackTrace();
-                    }
-                });
-    }
 
     @Subscribe
     public void changeDataTaskDone(Action action) {
         if (action == Action.REQUEST_API_TASK_DONE) {
-            progressBar.setVisibility(View.VISIBLE);
-            getDetailProject(loginData.getToken());
+            if (taskDoneAdapter != null) {
+                itemList.clear();
+                itemList.addAll(FragmentTaskProcess.itemListDone);
+                taskDoneAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+            }
         }
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
     }
 }
