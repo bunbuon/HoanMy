@@ -5,6 +5,7 @@ import android.content.ComponentCallbacks2;
 import androidx.multidex.MultiDexApplication;
 
 import com.facebook.stetho.Stetho;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import io.paperdb.Paper;
 

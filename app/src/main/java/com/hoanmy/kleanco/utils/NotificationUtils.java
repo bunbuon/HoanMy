@@ -46,7 +46,7 @@ public class NotificationUtils {
     }
 
 
-    public void showNotification(Context context, String title, Intent intent, String imageUrl) throws IOException {
+    public void showNotification(Context context, String title, Intent intent, String message, String timestamp) throws IOException {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         int notificationId = 1;
@@ -66,9 +66,9 @@ public class NotificationUtils {
                 .setAutoCancel(true)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContent(remoteViews);
-        Bitmap bitmap = getBitmapFromURL(imageUrl);
-//        remoteViews.setImageViewBitmap(R.id.hoan, bitmap);
         remoteViews.setTextViewText(R.id.tvTitle, title);
+        remoteViews.setTextViewText(R.id.tv_content, message);
+        remoteViews.setTextViewText(R.id.tvTimeSend, timestamp);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addNextIntent(intent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(

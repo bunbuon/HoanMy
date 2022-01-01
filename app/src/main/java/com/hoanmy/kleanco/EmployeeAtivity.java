@@ -15,13 +15,17 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.ctrlplusz.anytextview.AnyTextView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -85,45 +89,53 @@ public class EmployeeAtivity extends BaseActivity {
 
     @OnClick(R.id.btn_pause)
     void onClickPause() {
-        if (statusActive == 3) {
-            Toast.makeText(getApplicationContext(), "Bạn phải kết thúc công việc phát sinh trước.", Toast.LENGTH_SHORT).show();
-        } else {
-            statusButton = 1;
-            showDialogConfirm(getString(R.string.text_pause), getString(R.string.content_pause));
+        if (!checkProjSize()) {
+            if (statusActive == 3) {
+                Toast.makeText(getApplicationContext(), "Bạn phải kết thúc công việc phát sinh trước.", Toast.LENGTH_SHORT).show();
+            } else {
+                statusButton = 1;
+                showDialogConfirm(getString(R.string.text_pause), getString(R.string.content_pause));
+            }
         }
     }
 
     @OnClick(R.id.btn_continue)
     void onClickResume() {
-        if (statusActive == 3) {
-            Toast.makeText(getApplicationContext(), "Bạn phải kết thúc công việc phát sinh trước.", Toast.LENGTH_SHORT).show();
-        } else {
-            statusButton = 2;
-            showDialogConfirm(getString(R.string.text_resume), getString(R.string.content_resume));
+        if (!checkProjSize()) {
+            if (statusActive == 3) {
+                Toast.makeText(getApplicationContext(), "Bạn phải kết thúc công việc phát sinh trước.", Toast.LENGTH_SHORT).show();
+            } else {
+                statusButton = 2;
+                showDialogConfirm(getString(R.string.text_resume), getString(R.string.content_resume));
+            }
         }
     }
 
     @OnClick(R.id.btn_done)
     void onClickDone() {
-        if (statusActive == 3) {
-            Toast.makeText(getApplicationContext(), "Bạn phải kết thúc công việc phát sinh trước.", Toast.LENGTH_SHORT).show();
-        } else {
-            statusButton = 5;
-            showDialogConfirm(getString(R.string.text_done), getString(R.string.content_done));
+        if (!checkProjSize()) {
+            if (statusActive == 3) {
+                Toast.makeText(getApplicationContext(), "Bạn phải kết thúc công việc phát sinh trước.", Toast.LENGTH_SHORT).show();
+            } else {
+                statusButton = 5;
+                showDialogConfirm(getString(R.string.text_done), getString(R.string.content_done));
+            }
         }
     }
 
 
     @OnClick(R.id.btn_extra_job)
     void onClickExtra() {
-        if (!isExtra) {
-            statusButton = 3;
-            isExtra = true;
-            showDialogConfirm(getString(R.string.text_extra), getString(R.string.content_extra));
-        } else {
-            statusButton = 4;
-            isExtra = false;
-            showDialogConfirm(getString(R.string.text_extra), getString(R.string.text_end_extra));
+        if (!checkProjSize()) {
+            if (!isExtra) {
+                statusButton = 3;
+                isExtra = true;
+                showDialogConfirm(getString(R.string.text_extra), getString(R.string.content_extra));
+            } else {
+                statusButton = 4;
+                isExtra = false;
+                showDialogConfirm(getString(R.string.text_extra), getString(R.string.text_end_extra));
+            }
         }
 
     }
@@ -136,7 +148,8 @@ public class EmployeeAtivity extends BaseActivity {
 
     @OnClick(R.id.img_logout)
     void onClickLogout() {
-        Utils.loginActivity(this);
+        loginData = Paper.book().read("login");
+        Utils.loginActivity(this, loginData);
     }
 
     @BindView(R.id.swipeContainer)
@@ -149,6 +162,19 @@ public class EmployeeAtivity extends BaseActivity {
         ButterKnife.bind(this);
         statusActive = 0;
 
+        loginData = Paper.book().read("login");
+        FirebaseMessaging.getInstance().subscribeToTopic(loginData.getProjectDetail().getUser_id());
+        FirebaseMessaging.getInstance().subscribeToTopic(Constants.KEY_SUBSCRIBE_ALL)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = getString(R.string.msg_subscribed);
+                        if (!task.isSuccessful()) {
+                            msg = getString(R.string.msg_subscribe_failed);
+                        }
+                        Log.d(Utils.TAG, msg);
+                    }
+                });
         swipeRefreshLayout.setEnabled(false);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -164,7 +190,6 @@ public class EmployeeAtivity extends BaseActivity {
         viewLoading.setVisibility(View.VISIBLE);
         Paper.book().delete("PAUSE");
         Paper.book().delete("DONE");
-        loginData = Paper.book().read("login");
         txtNameStaff.setText(loginData.getName());
         txtNumStaff.setText(loginData.getUsername());
         getProjects(loginData.getToken());
@@ -223,6 +248,14 @@ public class EmployeeAtivity extends BaseActivity {
         countOutTime();
         Paper.book().write("DataService", dataJobNow);
         startService(dataJobNow.getName(), timeEndJob);
+
+    }
+
+    private boolean checkProjSize() {
+        if (projectsForID.getTaskProjects().size() == 0) {
+            Toast.makeText(this, getString(R.string.notification_task_process), Toast.LENGTH_LONG).show();
+            return true;
+        } else return false;
 
     }
 

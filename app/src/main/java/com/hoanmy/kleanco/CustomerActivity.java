@@ -17,6 +17,7 @@ import com.ctrlplusz.anytextview.AnyTextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.hoanmy.kleanco.commons.Constants;
 import com.hoanmy.kleanco.models.Login;
 import com.hoanmy.kleanco.utils.Utils;
 
@@ -43,7 +44,8 @@ public class CustomerActivity extends AppCompatActivity {
 
     @OnClick(R.id.img_logout)
     void onClickLogout() {
-        Utils.loginActivity(this);
+        loginData = Paper.book().read("login");
+        Utils.loginActivity(this, loginData);
     }
 
     @OnClick(R.id.image_hotline)
@@ -93,14 +95,15 @@ public class CustomerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer);
         ButterKnife.bind(this);
         loginData = Paper.book().read("login");
+
         if (loginData != null) {
             txtNameManager.setText("Xin chào " + loginData.getName());
             txtMail.setText(loginData.getProjectDetail().getEmail());
             txtTimeJob.setText(loginData.getProjectDetail().getHour_start() + " - " + loginData.getProjectDetail().getHour_end());
             txtPhoneNumber.setText(loginData.getProjectDetail().getPhone());
         }
-
-        FirebaseMessaging.getInstance().subscribeToTopic(loginData.get_id())
+        FirebaseMessaging.getInstance().subscribeToTopic(loginData.getProject_id());
+        FirebaseMessaging.getInstance().subscribeToTopic(Constants.KEY_SUBSCRIBE_ALL)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -109,7 +112,6 @@ public class CustomerActivity extends AppCompatActivity {
                             msg = getString(R.string.msg_subscribe_failed);
                         }
                         Log.d(Utils.TAG, msg);
-                        Toast.makeText(CustomerActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
 

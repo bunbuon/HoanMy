@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "232804683979",
-    "project_id": "hoan-my-service",
-    "storage_bucket": "hoan-my-service.appspot.com"
+    "project_number": "630402936713",
+    "project_id": "hm-service-gp",
+    "storage_bucket": "hm-service-gp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:232804683979:android:402ad38d8fd7332e8a0b4e",
+        "mobilesdk_app_id": "1:630402936713:android:65d4d277e33bb26d987b58",
         "android_client_info": {
-          "package_name": "com.hoanmy.kleanco"
+          "package_name": "com.live.hoanmy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "232804683979-lbr36crgpvrks3tb6hq8ak7l3ss1gp7k.apps.googleusercontent.com",
+          "client_id": "630402936713-491gfbtetsvo6kkeoj95e3qpd848ljr1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJlSAPogvEzzHOFqd4Ut-M3DNk68VDglE"
+          "current_key": "AIzaSyDpmB4VW7_vT-RQl2FPNA8eakAQqg-0GL8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "232804683979-lbr36crgpvrks3tb6hq8ak7l3ss1gp7k.apps.googleusercontent.com",
+              "client_id": "630402936713-491gfbtetsvo6kkeoj95e3qpd848ljr1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

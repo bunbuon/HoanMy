@@ -27,8 +27,17 @@ public class TaskProject {
     long time_start_real_ts;
     private User user;
     private boolean isDone = false;
+    private boolean isFeedback = false;
     int feedback_status;
     int feedback_score;
+
+    public boolean isFeedback() {
+        return isFeedback;
+    }
+
+    public void setFeedback(boolean feedback) {
+        isFeedback = feedback;
+    }
 
     public int getFeedback_score() {
         return feedback_score;

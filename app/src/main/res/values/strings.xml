@@ -47,6 +47,7 @@
     <string name="default_notification_channel_id">chanel1</string>
     <string name="msg_subscribed">đăng ký nhận thông báo thành công</string>
     <string name="msg_subscribe_failed">đăng ký nhận thông báo thất bại</string>
+    <string name="notification_channel_id">com.hoanmy.kleanco</string>
 
     <string-array name="project_arr">
         <item>Tên Dự Án</item>

@@ -5,7 +5,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -83,7 +82,7 @@ public class NotificationForegroundService extends Service {
         nameJob = dataJobNow.getName();
         timeTest = dataJobNow.getTime_end_timestamp();
         // Get the layouts to use in the custom notification
-        notificationLayout = new RemoteViews(getPackageName(), R.layout.custom_notification);
+        notificationLayout = new RemoteViews(getPackageName(), R.layout.job_notification);
         notificationLayoutExpanded = new RemoteViews(getPackageName(), R.layout.custom_notification_expand);
         notificationLayout.setTextViewText(R.id.tvTitle, nameJob);
         notificationLayoutExpanded.setTextViewText(R.id.tvTitle, nameJob);

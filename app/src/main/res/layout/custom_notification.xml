@@ -2,37 +2,68 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/_10sdp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/_10sdp"
+        android:layout_height="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_notifications_24" />
+
+    <TextView
+        android:id="@+id/tvNameApp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="@dimen/_3sdp"
+        android:layout_toRightOf="@id/icon"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/calibrib"
+        android:gravity="center_horizontal"
+        android:text="HM Service"
+        android:textColor="@color/color_key"
+        android:textSize="@dimen/_10sdp" />
 
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:ellipsize="marquee"
-            android:fontFamily="@font/calibrib"
-            android:gravity="center_horizontal"
-            android:maxLines="2"
-            android:text="Dọn Vệ Sinh Tầng 1"
-            android:textColor="@color/color_key"
-            android:textSize="@dimen/_12sdp" />
+    <TextView
+        android:id="@+id/tvTimeSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_toRightOf="@id/tvNameApp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/calibri"
+        android:gravity="center_horizontal"
+        android:text="HM Service"
+        android:textColor="@color/color_key"
+        android:textSize="@dimen/_10sdp" />
 
-        <TextView
-            android:id="@+id/txt_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_weight="1"
-            android:fontFamily="@font/calibrib"
-            android:gravity="center_horizontal"
-            android:text="01p:30s"
-            android:textColor="@color/color_key"
-            android:textSize="@dimen/_14sdp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/icon"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/calibrib"
+        android:gravity="center_horizontal"
+        android:maxLines="2"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/calibri"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp" />
 </RelativeLayout>

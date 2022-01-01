@@ -3,10 +3,13 @@ package com.hoanmy.kleanco.utils;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.hoanmy.kleanco.CustomerActivity;
 import com.hoanmy.kleanco.EmployeeAtivity;
 import com.hoanmy.kleanco.LoginActivity;
 import com.hoanmy.kleanco.ManagerActivity;
+import com.hoanmy.kleanco.commons.Constants;
+import com.hoanmy.kleanco.models.Login;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -40,8 +43,15 @@ public class Utils {
         }
         return time;
     }
-    public static void loginActivity(Activity activity) {
-        Paper.book().delete("STATUS_LOGIN");
+
+    public static void loginActivity(Activity activity, Login login) {
+        Paper.book().destroy();
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(Constants.KEY_SUBSCRIBE_ADMIN);
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(Constants.KEY_SUBSCRIBE_ALL);
+        if (login.getProject_id() != null)
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(login.getProject_id());
+        if (login.getProjectDetail().getUser_id() != null)
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(login.getProjectDetail().getUser_id());
         Intent intent = new Intent(activity, LoginActivity.class);
         activity.startActivity(intent);
         activity.finish();
@@ -64,6 +74,7 @@ public class Utils {
         activity.startActivity(intent);
         activity.finish();
     }
+
     public static String convertString(String str) {
         str = str.replaceAll("à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ", "a");
         str = str.replaceAll("è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ", "e");

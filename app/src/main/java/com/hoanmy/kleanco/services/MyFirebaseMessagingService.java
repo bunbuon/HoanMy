@@ -19,13 +19,19 @@ import androidx.work.WorkManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.hoanmy.kleanco.CustomerActivity;
+import com.hoanmy.kleanco.EmployeeAtivity;
 import com.hoanmy.kleanco.R;
+import com.hoanmy.kleanco.models.Employee;
 import com.hoanmy.kleanco.utils.NotificationUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Map;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -46,10 +52,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.e(TAG, "Data Payload: " + remoteMessage.getData().toString());
-
+            Map<String, String> data = remoteMessage.getData();
             try {
-                JSONObject json = new JSONObject(remoteMessage.getData().toString());
-                handleDataMessage(json);
+                handleDataMessage(data);
             } catch (Exception e) {
                 Log.e(TAG, "Exception: " + e.getMessage());
             }
@@ -76,14 +81,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
-    private void handleDataMessage(JSONObject json) {
-        Log.e(TAG, "push json: " + json.toString());
-        Toast.makeText(getApplicationContext(), json.toString(), Toast.LENGTH_LONG).show();
+    private void handleDataMessage(Map<String, String> data) {
+        Log.e(TAG, "push json: " + data.toString());
 
-//        try {
+        try {
 //            JSONObject data = json.getJSONObject("data");
 //
-//            String title = data.getString("title");
+            String title = data.get("title");
+            String message = data.get("message");
+            long time = Long.valueOf(data.get("timestamp"))*1000;
+            Date df = new java.util.Date(time);
+            String vv = new SimpleDateFormat("hh:mma").format(df);
+//            handleNotification(message);
+            Intent resultIntent = new Intent("pushNotification");
+            showNotificationMessage(getApplicationContext(), title, resultIntent, message, vv);
 //            String imageUrl = data.getString("image");
 //            String url = data.getString("url");
 //            String type = data.getString("type");
@@ -92,8 +103,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //            Log.e(TAG, "imageUrl: " + imageUrl);
 //            Log.e(TAG, "url: " + url);
 //            Log.e(TAG, "type: " + type);
-//
-//
+
+
 //            if (type.equals("web")) {
 //                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 //                showNotificationMessage(getApplicationContext(), title, browserIntent, imageUrl);
@@ -112,20 +123,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 ////                resultIntent.putExtra("_titlevideo", title);
 ////                showNotificationMessage(getApplicationContext(), title, resultIntent, imageUrl);
 //            }
-//        } catch (JSONException e) {
-//            Log.e(TAG, "Json Exception: " + e.getMessage());
-//        } catch (Exception e) {
-//            Log.e(TAG, "Exception: " + e.getMessage());
-//        }
+        } catch (Exception e) {
+            Log.e(TAG, "Exception: " + e.getMessage());
+        }
     }
 
     /**
      * Showing notification with text only
      */
-    private void showNotificationMessage(Context context, String title, Intent intent, String imageUrl) throws IOException {
+    private void showNotificationMessage(Context context, String title, Intent intent, String message, String time) throws IOException {
         notificationUtils = new NotificationUtils(context);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        notificationUtils.showNotification(getApplicationContext(), title, intent, imageUrl);
+        notificationUtils.showNotification(getApplicationContext(), title, intent, message, time);
     }
 
 

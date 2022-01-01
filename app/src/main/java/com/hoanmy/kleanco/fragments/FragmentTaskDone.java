@@ -58,6 +58,7 @@ public class FragmentTaskDone extends BaseFragmentSearch {
         taskDoneAdapter = new TaskDoneAdapter(getActivity(), itemList);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(taskDoneAdapter);
+        progressBar.setVisibility(View.GONE);
 
     }
 
@@ -79,7 +80,6 @@ public class FragmentTaskDone extends BaseFragmentSearch {
                 itemList.clear();
                 itemList.addAll(FragmentTaskProcess.itemListDone);
                 taskDoneAdapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.GONE);
             }
         }
     }
